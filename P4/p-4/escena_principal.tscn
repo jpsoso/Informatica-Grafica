@@ -1,0 +1,180 @@
+[gd_scene load_steps=29 format=3 uid="uid://dqj6s0olf6oos"]
+
+[ext_resource type="Script" uid="uid://d3qxuedn7bn1d" path="res://práctica4Scripts/script_raiz.gd" id="1_hcujj"]
+[ext_resource type="Script" uid="uid://lw84ul8lb05w" path="res://práctica4Scripts/camara_3d_orbital_simple.gd" id="2_hcujj"]
+[ext_resource type="Script" uid="uid://b6ru548e0y63g" path="res://práctica4Scripts/ejes3D.gd" id="3_rftnj"]
+[ext_resource type="Script" uid="uid://cy2ffql55v05v" path="res://práctica4Scripts/lathe_geometry_obj.gd" id="4_rftnj"]
+[ext_resource type="Texture2D" uid="uid://c2mgho2tl15oa" path="res://textures/pawn_texture.jpg" id="5_awcrs"]
+[ext_resource type="Material" uid="uid://crdl74maq1d7" path="res://materials/metallic.tres" id="5_iupgd"]
+[ext_resource type="Material" uid="uid://bx267y2y0w8d" path="res://materials/transparent.tres" id="6_lhnnm"]
+[ext_resource type="Material" uid="uid://u2ew3o3j5kha" path="res://materials/roughness.tres" id="7_hgi0t"]
+[ext_resource type="Texture2D" uid="uid://c7x5jyw4ufxdo" path="res://textures/textura_ladrillo.png" id="8_hgi0t"]
+[ext_resource type="Texture2D" uid="uid://dxxuq5hplkee1" path="res://textures/mapa_normales_ladrillo.png" id="9_5e3jd"]
+[ext_resource type="Script" uid="uid://cg3h5my7kluye" path="res://práctica4Scripts/textura.gd" id="10_5e3jd"]
+[ext_resource type="Texture2D" uid="uid://ch6dergkbqgan" path="res://textures/rustic_stone_wall_02_disp_1k.png" id="11_1xgag"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rftnj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0or06"]
+albedo_color = Color(0.69411767, 0.37254903, 0.29411766, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_rftnj"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_hgi0t"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_0or06"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_afc6g"]
+albedo_color = Color(0.09411765, 0.15294118, 1, 1)
+metallic = 0.75
+roughness = 0.15
+
+[sub_resource type="TorusMesh" id="TorusMesh_34kg7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sskua"]
+transparency = 1
+albedo_color = Color(0.09411765, 0.15294118, 1, 0.92156863)
+
+[sub_resource type="TorusMesh" id="TorusMesh_1xgag"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_awcrs"]
+albedo_color = Color(0.09411765, 0.15294118, 1, 1)
+roughness = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iupgd"]
+albedo_color = Color(0.09411765, 0.65882355, 0, 1)
+metallic = 0.75
+roughness = 0.15
+
+[sub_resource type="TorusMesh" id="TorusMesh_75cdl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nwgaw"]
+transparency = 1
+albedo_color = Color(0.09411765, 0.65882355, 0, 0.8117647)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1xgag"]
+albedo_texture = ExtResource("8_hgi0t")
+
+[sub_resource type="TorusMesh" id="TorusMesh_el456"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kw5jj"]
+roughness = 0.5
+normal_enabled = true
+normal_texture = ExtResource("9_5e3jd")
+
+[node name="EscenaPrincipal" type="Node3D"]
+script = ExtResource("1_hcujj")
+
+[node name="Camera3DOrbital" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 7.097458)
+fov = 100.55753
+script = ExtResource("2_hcujj")
+
+[node name="Ejes3D" type="Node3D" parent="."]
+script = ExtResource("3_rftnj")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.2127123, 0.7905087, -0.5743254, -0.57603747, 0.5762266, 0.57977915, 0.78926194, 0.20750675, 0.5779331, -5, 5, 5)
+shadow_enabled = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5357094, 0)
+shadow_enabled = true
+omni_attenuation = 0.31
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.8077431, 0.58953476, 0, -0.58953476, -0.8077431, 3, 5, -5.376414)
+shadow_enabled = true
+spot_range = 9.48786
+spot_attenuation = -0.3
+spot_angle = 32.911606
+
+[node name="ObjetosP4" type="Node3D" parent="."]
+
+[node name="Pawn" type="MeshInstance3D" parent="ObjetosP4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+script = ExtResource("4_rftnj")
+texture = ExtResource("5_awcrs")
+
+[node name="Floor" type="MeshInstance3D" parent="ObjetosP4"]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, -0.032626152, 0.01167202, 0.01124382)
+mesh = SubResource("PlaneMesh_rftnj")
+surface_material_override/0 = SubResource("StandardMaterial3D_0or06")
+
+[node name="Objects" type="Node3D" parent="ObjetosP4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+visible = false
+
+[node name="Row 0" type="Node3D" parent="ObjetosP4/Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="0" type="Node3D" parent="ObjetosP4/Objects/Row 0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
+
+[node name="Torus" type="MeshInstance3D" parent="ObjetosP4/Objects/Row 0/0"]
+mesh = SubResource("TorusMesh_rftnj")
+surface_material_override/0 = ExtResource("5_iupgd")
+
+[node name="1" type="Node3D" parent="ObjetosP4/Objects/Row 0"]
+
+[node name="Torus" type="MeshInstance3D" parent="ObjetosP4/Objects/Row 0/1"]
+mesh = SubResource("TorusMesh_hgi0t")
+surface_material_override/0 = ExtResource("6_lhnnm")
+
+[node name="2" type="Node3D" parent="ObjetosP4/Objects/Row 0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+
+[node name="Torus" type="MeshInstance3D" parent="ObjetosP4/Objects/Row 0/2"]
+mesh = SubResource("TorusMesh_0or06")
+surface_material_override/0 = ExtResource("7_hgi0t")
+
+[node name="Row 1" type="Node3D" parent="ObjetosP4/Objects"]
+
+[node name="0" type="Node3D" parent="ObjetosP4/Objects/Row 1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
+
+[node name="Torus" type="MeshInstance3D" parent="ObjetosP4/Objects/Row 1/0"]
+mesh = SubResource("TorusMesh_rftnj")
+surface_material_override/0 = SubResource("StandardMaterial3D_afc6g")
+
+[node name="1" type="Node3D" parent="ObjetosP4/Objects/Row 1"]
+
+[node name="Torus" type="MeshInstance3D" parent="ObjetosP4/Objects/Row 1/1"]
+mesh = SubResource("TorusMesh_34kg7")
+surface_material_override/0 = SubResource("StandardMaterial3D_sskua")
+
+[node name="2" type="Node3D" parent="ObjetosP4/Objects/Row 1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+
+[node name="Torus" type="MeshInstance3D" parent="ObjetosP4/Objects/Row 1/2"]
+mesh = SubResource("TorusMesh_1xgag")
+surface_material_override/0 = SubResource("StandardMaterial3D_awcrs")
+
+[node name="Row 2" type="Node3D" parent="ObjetosP4/Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+
+[node name="0" type="Node3D" parent="ObjetosP4/Objects/Row 2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
+
+[node name="Torus" type="MeshInstance3D" parent="ObjetosP4/Objects/Row 2/0"]
+mesh = SubResource("TorusMesh_rftnj")
+surface_material_override/0 = SubResource("StandardMaterial3D_iupgd")
+
+[node name="1" type="Node3D" parent="ObjetosP4/Objects/Row 2"]
+
+[node name="Torus" type="MeshInstance3D" parent="ObjetosP4/Objects/Row 2/1"]
+mesh = SubResource("TorusMesh_75cdl")
+surface_material_override/0 = SubResource("StandardMaterial3D_nwgaw")
+
+[node name="2" type="Node3D" parent="ObjetosP4/Objects/Row 2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+
+[node name="Torus" type="MeshInstance3D" parent="ObjetosP4/Objects/Row 2/2"]
+material_override = SubResource("StandardMaterial3D_1xgag")
+mesh = SubResource("TorusMesh_el456")
+surface_material_override/0 = SubResource("StandardMaterial3D_kw5jj")
+
+[node name="Planes" type="Node3D" parent="ObjetosP4"]
+visible = false
+script = ExtResource("10_5e3jd")
+textura = ExtResource("11_1xgag")

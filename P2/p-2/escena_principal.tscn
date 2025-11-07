@@ -1,0 +1,67 @@
+[gd_scene load_steps=13 format=3 uid="uid://dqj6s0olf6oos"]
+
+[ext_resource type="Script" uid="uid://d3qxuedn7bn1d" path="res://práctica2Scripts/script_raiz.gd" id="1_hcujj"]
+[ext_resource type="Script" path="res://práctica2Scripts/camara_3d_orbital_simple.gd" id="1_jdg2m"]
+[ext_resource type="Script" path="res://práctica2Scripts/ejes3D.gd" id="3_awcrs"]
+[ext_resource type="PackedScene" uid="uid://dfstx3f1cwtwv" path="res://modelos_3D/Hero of Time/Hero of Time.glb" id="3_rftnj"]
+[ext_resource type="ArrayMesh" uid="uid://bkpaylfjs5yox" path="res://modelos_3D/Arwing/model.obj" id="4_rftnj"]
+[ext_resource type="Script" uid="uid://eslmb1l2k17r" path="res://práctica2Scripts/donut.gd" id="5_0or06"]
+[ext_resource type="Script" uid="uid://5mnywgb3atd" path="res://práctica2Scripts/cubo_8_vertices.gd" id="6_afc6g"]
+[ext_resource type="Script" uid="uid://b3wno26jax4j3" path="res://cubo_24_vertices.gd" id="7_iupgd"]
+[ext_resource type="Script" uid="uid://cy2ffql55v05v" path="res://lathe_geometry_obj.gd" id="8_lhnnm"]
+[ext_resource type="Script" uid="uid://d13fav7tgkw6p" path="res://glass_lathe_geometry.gd" id="9_hgi0t"]
+[ext_resource type="Script" uid="uid://d35s10xguxuqd" path="res://semicircle_lathe_geometry.gd" id="10_5e3jd"]
+[ext_resource type="Script" uid="uid://c7bphdpww3lwl" path="res://cylinder_lathe_geometry.gd" id="11_1xgag"]
+
+[node name="EscenaPrincipal" type="Node3D"]
+script = ExtResource("1_hcujj")
+
+[node name="Camera3DOrbital" type="Camera3D" parent="."]
+transform = Transform3D(0.7888269, -0.15907419, 0.59367293, -1.0346792e-08, 0.9659258, 0.258819, -0.6146153, -0.2041634, 0.7619482, 1.7014369, 2.2329094, 2.807537)
+fov = 100.55753
+script = ExtResource("1_jdg2m")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.82781565, -0.27992338, 0.48617303, 2.8182079e-08, 0.8666183, 0.49897185, -0.5610002, -0.4130567, 0.71740013, 5.3673406, 5.092837, 2.8745532)
+
+[node name="Ejes3D" type="Node3D" parent="."]
+script = ExtResource("3_awcrs")
+
+[node name="ObjetosP2" type="Node3D" parent="."]
+
+[node name="Hero of Time" parent="ObjetosP2" instance=ExtResource("3_rftnj")]
+transform = Transform3D(-0.9291907, 0, 0.36960074, 0, 1, 0, -0.36960074, 0, -0.9291907, -0.042524815, 0.39269888, -0.03867483)
+visible = false
+
+[node name="Donut" type="MeshInstance3D" parent="ObjetosP2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.017783403, 0)
+visible = false
+script = ExtResource("5_0or06")
+
+[node name="Arwing" type="MeshInstance3D" parent="ObjetosP2"]
+transform = Transform3D(2.6937442, 1.1608815, -0.62936044, -1.2294128, 2.7266092, -0.23269837, 0.48196223, 0.46685782, 2.9239972, -2.5420516, 0.45001996, 1.201093)
+visible = false
+mesh = ExtResource("4_rftnj")
+
+[node name="Cubo8vertices" type="MeshInstance3D" parent="ObjetosP2"]
+visible = false
+script = ExtResource("6_afc6g")
+
+[node name="Cubo24Vertices" type="MeshInstance3D" parent="ObjetosP2"]
+visible = false
+script = ExtResource("7_iupgd")
+
+[node name="LatheGeometryObj" type="MeshInstance3D" parent="ObjetosP2"]
+visible = false
+script = ExtResource("8_lhnnm")
+
+[node name="GlassLatheGeometry" type="MeshInstance3D" parent="ObjetosP2"]
+visible = false
+script = ExtResource("9_hgi0t")
+
+[node name="SemicircleLatheGeometry" type="MeshInstance3D" parent="ObjetosP2"]
+visible = false
+script = ExtResource("10_5e3jd")
+
+[node name="CylinderLatheGeometry" type="MeshInstance3D" parent="ObjetosP2"]
+script = ExtResource("11_1xgag")

@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://d2yeu7h3hev3h"]
+
+[ext_resource type="Script" uid="uid://bcm23woiq0fax" path="res://scripts/eyes.gd" id="1_lmq75"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_58xgv"]
+size = Vector3(1.5, 1.5, 1.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lmq75"]
+size = Vector3(0.25, 0.25, 0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_58xgv"]
+albedo_color = Color(0, 0.99215686, 0.9764706, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lmq75"]
+albedo_color = Color(0, 1, 1, 1)
+
+[node name="Head" type="Node3D"]
+
+[node name="PiezaF" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_58xgv")
+
+[node name="Eyes" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0.8829911)
+script = ExtResource("1_lmq75")
+
+[node name="LeftEye" type="Node3D" parent="Eyes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+
+[node name="PiezaG" type="MeshInstance3D" parent="Eyes/LeftEye"]
+mesh = SubResource("BoxMesh_lmq75")
+surface_material_override/0 = SubResource("StandardMaterial3D_58xgv")
+
+[node name="RightEye" type="Node3D" parent="Eyes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+
+[node name="PiezaG" type="MeshInstance3D" parent="Eyes/RightEye"]
+mesh = SubResource("BoxMesh_lmq75")
+surface_material_override/0 = SubResource("StandardMaterial3D_lmq75")

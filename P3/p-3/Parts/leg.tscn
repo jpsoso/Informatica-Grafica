@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://bj028tc5hhw4d"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_f86bw"]
+size = Vector3(1, 2, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_f86bw"]
+
+[node name="Leg" type="Node3D"]
+
+[node name="T(0,-1,0)" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="PiezaB" type="MeshInstance3D" parent="T(0,-1,0)"]
+mesh = SubResource("BoxMesh_f86bw")
+
+[node name="T(0,-1_85,0_35)" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.85, 0.35)
+
+[node name="S(1, 0_3,0)" type="Node3D" parent="T(0,-1_85,0_35)"]
+transform = Transform3D(1, 0, 0, 0, 0.3, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="PiezaH" type="MeshInstance3D" parent="T(0,-1_85,0_35)/S(1, 0_3,0)"]
+mesh = SubResource("PrismMesh_f86bw")
+skeleton = NodePath("../..")

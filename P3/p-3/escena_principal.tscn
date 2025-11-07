@@ -1,0 +1,56 @@
+[gd_scene load_steps=11 format=3 uid="uid://bil1v24m1y7ev"]
+
+[ext_resource type="Script" uid="uid://lw84ul8lb05w" path="res://scripts/camara_3d_orbital_simple.gd" id="1_r0811"]
+[ext_resource type="Script" uid="uid://b6ru548e0y63g" path="res://scripts/ejes3D.gd" id="2_hcujj"]
+[ext_resource type="PackedScene" uid="uid://w8ftto5lbld6" path="res://Parts/chest.tscn" id="3_hcujj"]
+[ext_resource type="Script" uid="uid://k0lbp6x0prod" path="res://scripts/left_leg.gd" id="4_iupgd"]
+[ext_resource type="PackedScene" uid="uid://bj028tc5hhw4d" path="res://Parts/leg.tscn" id="4_rftnj"]
+[ext_resource type="PackedScene" uid="uid://d2yeu7h3hev3h" path="res://Parts/head.tscn" id="6_afc6g"]
+[ext_resource type="Script" uid="uid://dlrl1bxwxrdn4" path="res://scripts/right_leg.gd" id="6_lhnnm"]
+[ext_resource type="PackedScene" uid="uid://beq6jqjj7xty5" path="res://Parts/right_arm.tscn" id="7_1xgag"]
+[ext_resource type="PackedScene" uid="uid://cv1bamoiju316" path="res://Parts/left_arm.tscn" id="8_5e3jd"]
+[ext_resource type="Script" uid="uid://bi2pxuhsq6lvi" path="res://scripts/head.gd" id="11_1xgag"]
+
+[node name="EscenaPrincipal" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9062045, 0.4228397, 0, -0.4228397, 0.9062045, 0, 1.9177761, 7.3707485)
+script = ExtResource("1_r0811")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.1747613, 9.6774)
+
+[node name="Ejes3D" type="Node3D" parent="."]
+script = ExtResource("2_hcujj")
+
+[node name="ObjP3Golem" type="Node3D" parent="."]
+
+[node name="Chest" parent="ObjP3Golem" instance=ExtResource("3_hcujj")]
+
+[node name="Legs" type="Node3D" parent="ObjP3Golem"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
+
+[node name="LeftLeg" type="Node3D" parent="ObjP3Golem/Legs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0)
+script = ExtResource("4_iupgd")
+
+[node name="Leg" parent="ObjP3Golem/Legs/LeftLeg" instance=ExtResource("4_rftnj")]
+
+[node name="RightLeg" type="Node3D" parent="ObjP3Golem/Legs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
+script = ExtResource("6_lhnnm")
+
+[node name="Leg" parent="ObjP3Golem/Legs/RightLeg" instance=ExtResource("4_rftnj")]
+
+[node name="Arms" type="Node3D" parent="ObjP3Golem"]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 1.5, 0)
+
+[node name="RightArm" parent="ObjP3Golem/Arms" instance=ExtResource("7_1xgag")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
+
+[node name="LeftArm" parent="ObjP3Golem/Arms" instance=ExtResource("8_5e3jd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0)
+
+[node name="Head" parent="ObjP3Golem" instance=ExtResource("6_afc6g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7821453, 0.9221815)
+script = ExtResource("11_1xgag")

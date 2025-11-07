@@ -1,0 +1,25 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="P2"
+run/main_scene="uid://dqj6s0olf6oos"
+config/features=PackedStringArray("4.5", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+Utilidades="*res://utilidades.gd"
+GlobalUtilities="*res://global_utilities.gd"
+
+[dotnet]
+
+project/assembly_name="P2"
