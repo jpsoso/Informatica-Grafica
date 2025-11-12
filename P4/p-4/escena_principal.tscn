@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://dqj6s0olf6oos"]
+[gd_scene load_steps=32 format=4 uid="uid://dqj6s0olf6oos"]
 
 [ext_resource type="Script" uid="uid://d3qxuedn7bn1d" path="res://práctica4Scripts/script_raiz.gd" id="1_hcujj"]
 [ext_resource type="Script" uid="uid://lw84ul8lb05w" path="res://práctica4Scripts/camara_3d_orbital_simple.gd" id="2_hcujj"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dxxuq5hplkee1" path="res://textures/mapa_normales_ladrillo.png" id="9_5e3jd"]
 [ext_resource type="Script" uid="uid://cg3h5my7kluye" path="res://práctica4Scripts/textura.gd" id="10_5e3jd"]
 [ext_resource type="Texture2D" uid="uid://ch6dergkbqgan" path="res://textures/rustic_stone_wall_02_disp_1k.png" id="11_1xgag"]
+[ext_resource type="Texture2D" uid="uid://cjt0sokbohxom" path="res://textures/rustic_stone_wall_02_nor_dx_1k.png" id="13_34kg7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_34kg7"]
 shading_mode = 2
@@ -195,3 +196,4 @@ surface_material_override/0 = SubResource("StandardMaterial3D_kw5jj")
 [node name="Planes" type="Node3D" parent="ObjetosP4"]
 script = ExtResource("10_5e3jd")
 textura = ExtResource("11_1xgag")
+normalMap = ExtResource("13_34kg7")

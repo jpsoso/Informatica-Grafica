@@ -3,6 +3,7 @@
 extends Node3D
 
 @export var textura: Texture2D
+@export var normalMap: Texture2D
 
 func _ready():
 	crear_plano_uv(3, 1.0, 90,0,Vector3(0,1.5,-4))  # Textura completa
@@ -61,6 +62,7 @@ func crear_plano_uv(size: float, escala_uv: float, rx:float, rz:float, pos:Vecto
 	# Crear material con textura
 	var mat = StandardMaterial3D.new()
 	mat.albedo_texture = textura
+	mat.normal_texture = normalMap
 	mat.uv1_offset = Vector3.ZERO
 	mat.uv1_scale = Vector3(1, 1, 1)
 	mi.material_override = mat
