@@ -1,4 +1,7 @@
+@tool
 extends MeshInstance3D
+
+@export var texture = Texture2D
 
 func _ready() -> void:
 	
@@ -17,15 +20,20 @@ func _ready() -> void:
 	tablas[ Mesh.ARRAY_INDEX  ] = triangulos
 	tablas[ Mesh.ARRAY_NORMAL ] = normales
 	
+	## Inicializamos las coordenadas de texturas
+	var uvs = GlobalUtilities.calcUV(vertices)
+	tablas[ Mesh.ARRAY_TEX_UV ] = uvs
+	
 	## crear e inicialzar el objeto 'mesh' de este nodo 
 	mesh = ArrayMesh.new() ## crea malla en modo diferido, vacía
 	mesh.add_surface_from_arrays( Mesh.PRIMITIVE_TRIANGLES, tablas )
 	
 	## crear un material
-	var mat := StandardMaterial3D.new() 
-	mat.albedo_color = Color( 1.0, 0.5, 0.2 )
-	mat.metallic = 0.3
-	mat.roughness = 0.2
+	var mat := StandardMaterial3D.new()
+	mat.albedo_texture = texture
+	# mat.albedo_color = Color(0.423, 0.668, 1.0, 1.0)
+	# mat.metallic = 0.3
+	# mat.roughness = 0.2
 	# mat.shading_mode = BaseMaterial3D.SHADING_MODE_PER_PIXEL
 	mat.shading_mode = BaseMaterial3D.SHADING_MODE_PER_VERTEX
 	

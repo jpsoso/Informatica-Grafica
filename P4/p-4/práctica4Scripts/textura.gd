@@ -1,3 +1,5 @@
+@tool
+
 extends Node3D
 
 @export var textura: Texture2D

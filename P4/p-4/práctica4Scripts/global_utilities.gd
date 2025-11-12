@@ -1,3 +1,5 @@
+@tool
+
 extends Node
 
 func positiveX (profile2D : PackedVector2Array) -> bool:
@@ -161,15 +163,24 @@ static func calcUV(vertices: PackedVector3Array) -> PackedVector2Array:
 	var uvs := PackedVector2Array()
 	var max_u = 1.0
 	var max_v = 1.0
-	var min_y = vertices[0].y # Bottom point
-	var max_y = vertices[1].y # Top point
+	var min_y = vertices[0].y
+	var max_y = vertices[0].y
+	
+	# Finding the max and lowest points
+	for vert in vertices:
+		if vert.y < min_y:
+			min_y = vert.y
+		if vert.y > max_y:
+			max_y = vert.y
+	
 	var height = max_y - min_y
+	if height == 0:
+		height = 1
 	
 	for vert in vertices:
 		# 1. Calcular el valor del parámetro u
-		var phi = atan2(vert.z, vert.x)
+		var phi = atan2(vert.z, -vert.x)
 		var u = max_u*(phi / (2.0 * PI) + 0.5) # This step is to make range from 0 to 1
-
 		# 2. Calcular el valor del parámetro v
 		var v = (vert.y - min_y) / height
 		
