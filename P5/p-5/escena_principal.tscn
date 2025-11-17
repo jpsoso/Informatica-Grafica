@@ -1,3 +1,78 @@
-[gd_scene format=3 uid="uid://b8yrq12w4ylxj"]
+[gd_scene load_steps=10 format=3 uid="uid://b8yrq12w4ylxj"]
+
+[ext_resource type="Script" uid="uid://lw84ul8lb05w" path="res://práctica5Scripts/camara_3d_orbital_simple.gd" id="1_jdg2m"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_r0811"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hcujj"]
+albedo_color = Color(1, 0.46961236, 0.42237982, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jdg2m"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_afc6g"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jdg2m"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r0811"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_0or06"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_jdg2m"]
+height = 0.49682617
+radius = 0.9819336
 
 [node name="EscenaPrincipal" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9439969, 0.32995427, 0, -0.32995427, 0.9439969, 0, 3.2427473, 5.5563164)
+
+[node name="Camera3DOrbital" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8211701, 2.2005987)
+script = ExtResource("1_jdg2m")
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3DOrbital"]
+target_position = Vector3(0, 0, -1)
+
+[node name="Ejes3D" type="Node3D" parent="."]
+
+[node name="ObjetosP5" type="Node3D" parent="."]
+
+[node name="Suelo" type="MeshInstance3D" parent="ObjetosP5"]
+transform = Transform3D(20, 0, 0, 0, -8.742278e-07, 20, 0, -20, -8.742278e-07, 0, 0, 0)
+mesh = SubResource("QuadMesh_r0811")
+surface_material_override/0 = SubResource("StandardMaterial3D_hcujj")
+
+[node name="Floor" type="StaticBody3D" parent="ObjetosP5/Suelo"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ObjetosP5/Suelo/Floor"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, -0.5)
+shape = SubResource("BoxShape3D_jdg2m")
+
+[node name="Simple Figures" type="Node3D" parent="ObjetosP5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+
+[node name="Figure 1 Capsule" type="Node3D" parent="ObjetosP5/Simple Figures"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ObjetosP5/Simple Figures/Figure 1 Capsule"]
+mesh = SubResource("CapsuleMesh_afc6g")
+skeleton = NodePath("../..")
+
+[node name="Capsule" type="StaticBody3D" parent="ObjetosP5/Simple Figures/Figure 1 Capsule/MeshInstance3D"]
+physics_material_override = SubResource("PhysicsMaterial_jdg2m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ObjetosP5/Simple Figures/Figure 1 Capsule/MeshInstance3D/Capsule"]
+shape = SubResource("CapsuleShape3D_r0811")
+
+[node name="Figure 2 Torus" type="Node3D" parent="ObjetosP5/Simple Figures"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ObjetosP5/Simple Figures/Figure 2 Torus"]
+mesh = SubResource("TorusMesh_0or06")
+skeleton = NodePath("../..")
+
+[node name="Torus" type="StaticBody3D" parent="ObjetosP5/Simple Figures/Figure 2 Torus/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ObjetosP5/Simple Figures/Figure 2 Torus/MeshInstance3D/Torus"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0026882887, 0)
+shape = SubResource("CylinderShape3D_jdg2m")

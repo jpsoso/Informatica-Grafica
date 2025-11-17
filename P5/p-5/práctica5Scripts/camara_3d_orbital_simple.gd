@@ -1,5 +1,8 @@
 extends Camera3D
 
+@export var ray_length : float = 1000
+@onready var ray = $RayCast3D
+
 ## ----------------------------------------------------------------------
 ## contantes y variables de instancia 
 
@@ -62,9 +65,36 @@ func _input( event : InputEvent ):
 				
 	elif event is InputEventMouseMotion and bdrp: ## movim. ratón
 		dxy += ar * Vector2( -event.relative.x, event.relative.y ) 
-		
+			
 	else: ## otros tipos de eventos (no hace nada)
 		av = false ## (no actualizar transf)
 
 	if av:
 		_actualiza_transf_vista( )
+		
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		var mouse_pos = get_viewport().get_mouse_position()
+		ray.global_position = project_ray_origin(mouse_pos)
+		ray.target_position = project_local_ray_normal(mouse_pos) * ray_length
+		ray.force_raycast_update()
+		if ray.is_colliding():
+			var objeto = ray.get_collider()
+			print("Seleccionado: ", objeto.name)
+			if objeto.name == "Floor":
+				crear_cubo_en(ray.get_collision_point())
+				print("Cubo creado en: ", ray.get_collision_point())
+
+func crear_cubo_en(pos: Vector3) -> void:
+	var nuevo_cubo := MeshInstance3D.new()
+	nuevo_cubo.mesh = BoxMesh.new()
+
+	# Offset the position so the cube sits on top of the point, not centered inside it
+	nuevo_cubo.position = pos + (Vector3.UP * 0.5)
+	
+	var mat := StandardMaterial3D.new()
+	mat.albedo_color = Color(randf(), randf(), randf())
+	
+	nuevo_cubo.material_override = mat
+	
+	# Adding to current_scene is okay, but be careful if scenes change
+	get_tree().current_scene.add_child(nuevo_cubo)
