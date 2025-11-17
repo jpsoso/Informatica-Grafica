@@ -6,7 +6,7 @@ extends MeshInstance3D
 func _ready() -> void:
 	# Generate profile and the steps
 	var profile := generateProfilePawn()
-	var steps := 32
+	var steps := 128
 	
 	## crear las tablas de vértices y triángulos de  
 	var vertices   := PackedVector3Array([])

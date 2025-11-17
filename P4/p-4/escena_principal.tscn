@@ -110,7 +110,7 @@ spot_angle = 32.911606
 [node name="ObjetosP4" type="Node3D" parent="."]
 
 [node name="Pawn" type="MeshInstance3D" parent="ObjetosP4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.303, 0, 0)
+transform = Transform3D(-0.8545133, 0, -0.51942956, 0, 1, 0, 0.51942956, 0, -0.8545133, -6.303, 0, 0)
 material_override = SubResource("StandardMaterial3D_34kg7")
 mesh = SubResource("ArrayMesh_sskua")
 script = ExtResource("4_rftnj")
