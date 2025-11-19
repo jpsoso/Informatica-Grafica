@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bre7b0abkdejh"]
+
+[ext_resource type="PackedScene" uid="uid://cbq8dhliw2g20" path="res://Parts/finger.tscn" id="1_yhpug"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_vtrhm"]
+size = Vector3(1, 1.25, 1)
+
+[node name="Hand" type="Node3D"]
+
+[node name="T(0, -0_625, 0)" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.625, 0)
+
+[node name="PiezaD" type="MeshInstance3D" parent="T(0, -0_625, 0)"]
+mesh = SubResource("BoxMesh_vtrhm")
+
+[node name="T(0, -1_25, 0)" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.25, 0)
+
+[node name="Fingers" parent="T(0, -1_25, 0)" instance=ExtResource("1_yhpug")]

@@ -1,0 +1,46 @@
+[gd_scene load_steps=11 format=3 uid="uid://b25vjo32kyic7"]
+
+[ext_resource type="PackedScene" uid="uid://w8ftto5lbld6" path="res://Parts/chest.tscn" id="1_si3s4"]
+[ext_resource type="Script" uid="uid://k0lbp6x0prod" path="res://scripts/left_leg.gd" id="2_em7xd"]
+[ext_resource type="PackedScene" uid="uid://bj028tc5hhw4d" path="res://Parts/leg.tscn" id="3_doivv"]
+[ext_resource type="Script" uid="uid://dlrl1bxwxrdn4" path="res://scripts/right_leg.gd" id="4_a7nkm"]
+[ext_resource type="PackedScene" uid="uid://beq6jqjj7xty5" path="res://Parts/right_arm.tscn" id="5_o1xaw"]
+[ext_resource type="Script" uid="uid://cilh2gyxhmn1" path="res://scripts/right_arm.gd" id="6_rarih"]
+[ext_resource type="PackedScene" uid="uid://cv1bamoiju316" path="res://Parts/left_arm.tscn" id="7_xlldm"]
+[ext_resource type="Script" uid="uid://ct6s35k0oket0" path="res://scripts/left_arm.gd" id="8_l65dd"]
+[ext_resource type="PackedScene" uid="uid://d2yeu7h3hev3h" path="res://Parts/head.tscn" id="9_ii33b"]
+[ext_resource type="Script" uid="uid://bi2pxuhsq6lvi" path="res://scripts/head.gd" id="10_aiivl"]
+
+[node name="ObjP3Golem" type="Node3D"]
+
+[node name="Chest" parent="." instance=ExtResource("1_si3s4")]
+
+[node name="Legs" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
+
+[node name="LeftLeg" type="Node3D" parent="Legs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0)
+script = ExtResource("2_em7xd")
+
+[node name="Leg" parent="Legs/LeftLeg" instance=ExtResource("3_doivv")]
+
+[node name="RightLeg" type="Node3D" parent="Legs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
+script = ExtResource("4_a7nkm")
+
+[node name="Leg" parent="Legs/RightLeg" instance=ExtResource("3_doivv")]
+
+[node name="Arms" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 1.5, 0)
+
+[node name="RightArm" parent="Arms" instance=ExtResource("5_o1xaw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
+script = ExtResource("6_rarih")
+
+[node name="LeftArm" parent="Arms" instance=ExtResource("7_xlldm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0)
+script = ExtResource("8_l65dd")
+
+[node name="Head" parent="." instance=ExtResource("9_ii33b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7821453, 0.9221815)
+script = ExtResource("10_aiivl")

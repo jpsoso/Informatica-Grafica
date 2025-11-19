@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://b8yrq12w4ylxj"]
+[gd_scene load_steps=11 format=3 uid="uid://b8yrq12w4ylxj"]
 
 [ext_resource type="Script" uid="uid://lw84ul8lb05w" path="res://práctica5Scripts/camara_3d_orbital_simple.gd" id="1_jdg2m"]
+[ext_resource type="PackedScene" path="res://Golem/Parts/obj_p_3_golem.tscn" id="2_r0811"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_r0811"]
 
@@ -47,6 +48,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_hcujj")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ObjetosP5/Suelo/Floor"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, -0.5)
 shape = SubResource("BoxShape3D_jdg2m")
+
+[node name="Golem" parent="ObjetosP5" instance=ExtResource("2_r0811")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 
 [node name="Simple Figures" type="Node3D" parent="ObjetosP5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
