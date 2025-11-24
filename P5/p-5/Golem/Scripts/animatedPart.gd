@@ -19,6 +19,10 @@ var angle := 0.0
 var rotation_speed_deg := 100
 var translation_speed := 100
 
+# Posible States ===========================
+enum State { none, WALK, ARM, LEG, HEAD, ALL }
+var current_state = State.none
+
 @onready var emisor = get_node("/root/EscenaPrincipal/Camera3DOrbital")
 
 # Called when the node enters the scene tree for the first time.
@@ -27,77 +31,58 @@ func _ready() -> void:
 	#print(emisor)
 
 func _activateHead():
-	headActive = !headActive
 	_resetAnimation()
-	walkActive = false
-	armActive = false
-	legActive = false
-	allActive = false
+	current_state = State.HEAD
 
 func _activateWalk():
-	walkActive = !walkActive
 	_resetAnimation()
-	armActive = false
-	legActive = false
-	headActive = false
-	allActive = false
+	current_state = State.WALK
 	
 func _activateArms():
-	armActive = !armActive
 	_resetAnimation()
-	walkActive = false
-	legActive = false
-	headActive = false
-	allActive = false
+	current_state = State.ARM
 	
 func _activateLegs():
-	legActive = !legActive
 	_resetAnimation()
-	walkActive = false
-	armActive = false
-	headActive = false
-	allActive = false
+	current_state = State.LEG
 	
 func _activateAll():
-	allActive = !allActive
 	_resetAnimation()
-	walkActive = false
-	armActive = false
-	legActive = false
-	headActive = false
+	current_state = State.ALL
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
-	
 	if Input.is_action_just_pressed(walkAnimation):
 		_activateWalk()
-	if walkActive :
-		walkingAnimation(delta)
-		headAnimation(delta)
-	
-	if Input.is_action_just_pressed(moveArm):
-		_activateArms()
-	if armActive:
-		armAnimation(delta)
-	
-	if Input.is_action_just_pressed(moveLeg):
-		_activateLegs()
-	if legActive:
-		legAnimation(delta)
 		
-	if Input.is_action_just_pressed(moveHead):
+	elif Input.is_action_just_pressed(moveArm):
+		_activateArms()
+		
+	elif Input.is_action_just_pressed(moveLeg):
+		_activateLegs()
+		
+	elif Input.is_action_just_pressed(moveHead):
 		_activateHead()
-	if headActive:
-		headAnimation(delta)
-	
-	if Input.is_action_just_pressed(moveAll):
+		
+	elif Input.is_action_just_pressed(moveAll):
 		_activateAll()
-	if allActive:
-		armAnimation(delta)
-		legAnimation(delta)
-		headAnimation(delta)
 	
+	match current_state:
+		State.WALK:
+			walkingAnimation(delta)
+			headAnimation(delta)
+		State.ARM:
+			armAnimation(delta)
+		State.LEG:
+			legAnimation(delta)
+		State.HEAD:
+			headAnimation(delta)
+		State.ALL:
+			armAnimation(delta)
+			legAnimation(delta)
+			headAnimation(delta)
+
 func _resetAnimation():
 	rotation.x = 0
 	rotation.y = 0
