@@ -19,16 +19,21 @@ var angle := 0.0
 var rotation_speed_deg := 100
 var translation_speed := 100
 
-# Posible States ===========================
+# Posibles estados para las animaciones
 enum State { none, WALK, ARM, LEG, HEAD, ALL }
 var current_state = State.none
 
+# Obteniendo al emisor para usar las señales que transmite
 @onready var emisor = get_node("/root/EscenaPrincipal/Camera3DOrbital")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# Conectando las señales a los actuadores, que son las funciones que activan los estados de las distintas animaciones
 	emisor.moveHead.connect(_activateHead)
-	#print(emisor)
+	emisor.moveArms.connect(_activateArms)
+	emisor.moveLegs.connect(_activateLegs)
+	emisor.walk.connect(_activateWalk)
+	emisor.moveAll.connect(_activateAll)
 
 func _activateHead():
 	_resetAnimation()

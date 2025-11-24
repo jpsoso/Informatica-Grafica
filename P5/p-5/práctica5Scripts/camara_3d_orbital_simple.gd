@@ -6,6 +6,10 @@ extends Camera3D
 ## ----------------------------------------------------------------------
 ## Señales para activar animaciones
 signal moveHead()
+signal moveArms()
+signal moveLegs() 
+signal moveAll()
+signal walk()
 
 
 ## ----------------------------------------------------------------------
@@ -90,7 +94,15 @@ func _input( event : InputEvent ):
 					crear_cubo_en(ray.get_collision_point())
 					print("Cubo creado en: ", ray.get_collision_point())
 				"Head":
-					self.moveHead.emit()
+					moveHead.emit()
+				"Arms":
+					moveArms.emit()
+				"Legs":
+					moveLegs.emit()
+				"Walk":
+					walk.emit()
+				"Chest":
+					moveAll.emit()
 
 
 func crear_cubo_en(pos: Vector3) -> void:

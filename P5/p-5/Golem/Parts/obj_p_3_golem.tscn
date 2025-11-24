@@ -1,32 +1,33 @@
-[gd_scene load_steps=9 format=3 uid="uid://b25vjo32kyic7"]
+[gd_scene load_steps=8 format=3 uid="uid://b25vjo32kyic7"]
 
 [ext_resource type="PackedScene" uid="uid://w8ftto5lbld6" path="res://Golem/Parts/chest.tscn" id="1_si3s4"]
-[ext_resource type="Script" uid="uid://k0lbp6x0prod" path="res://Golem/Scripts/left_leg.gd" id="2_em7xd"]
-[ext_resource type="PackedScene" uid="uid://bj028tc5hhw4d" path="res://Golem/Parts/leg.tscn" id="3_doivv"]
-[ext_resource type="Script" uid="uid://dlrl1bxwxrdn4" path="res://Golem/Scripts/right_leg.gd" id="4_a7nkm"]
+[ext_resource type="PackedScene" uid="uid://bocvc0abgspmi" path="res://Golem/Parts/legs.tscn" id="2_x2621"]
 [ext_resource type="PackedScene" uid="uid://beq6jqjj7xty5" path="res://Golem/Parts/right_arm.tscn" id="5_o1xaw"]
 [ext_resource type="PackedScene" uid="uid://cv1bamoiju316" path="res://Golem/Parts/left_arm.tscn" id="7_xlldm"]
 [ext_resource type="PackedScene" uid="uid://d2yeu7h3hev3h" path="res://Golem/Parts/head.tscn" id="9_ii33b"]
 [ext_resource type="Script" uid="uid://bi2pxuhsq6lvi" path="res://Golem/Scripts/head.gd" id="10_aiivl"]
 
+[sub_resource type="GDScript" id="GDScript_x2621"]
+script/source = "extends Node3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
 [node name="ObjP3Golem" type="Node3D"]
 
 [node name="Chest" parent="." instance=ExtResource("1_si3s4")]
+script = SubResource("GDScript_x2621")
 
-[node name="Legs" type="Node3D" parent="."]
+[node name="Legs" parent="." instance=ExtResource("2_x2621")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
-
-[node name="LeftLeg" type="Node3D" parent="Legs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0)
-script = ExtResource("2_em7xd")
-
-[node name="Leg" parent="Legs/LeftLeg" instance=ExtResource("3_doivv")]
-
-[node name="RightLeg" type="Node3D" parent="Legs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
-script = ExtResource("4_a7nkm")
-
-[node name="Leg" parent="Legs/RightLeg" instance=ExtResource("3_doivv")]
 
 [node name="Arms" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 1.5, 0)

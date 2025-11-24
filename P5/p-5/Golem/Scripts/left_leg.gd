@@ -6,8 +6,8 @@ var to_back := false
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+#func _ready() -> void:
+#	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -19,7 +19,7 @@ func _resetAnimation():
 	to_back = false
 	super._resetAnimation()
 
-func walkingAnimation(delta): 
+func walkingAnimation(delta: float): 
 	if to_front:
 		rotation.x -= deg_to_rad(rotation_speed_deg * delta)
 		if (rad_to_deg(rotation.x) <= -45):

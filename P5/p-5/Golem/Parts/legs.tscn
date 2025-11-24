@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bocvc0abgspmi"]
+
+[ext_resource type="Script" uid="uid://k0lbp6x0prod" path="res://Golem/Scripts/left_leg.gd" id="1_alpy7"]
+[ext_resource type="PackedScene" uid="uid://bj028tc5hhw4d" path="res://Golem/Parts/leg.tscn" id="2_ynl83"]
+[ext_resource type="Script" uid="uid://dlrl1bxwxrdn4" path="res://Golem/Scripts/right_leg.gd" id="3_kto0m"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_alpy7"]
+size = Vector3(4, 2, 1)
+
+[node name="Legs" type="Node3D"]
+
+[node name="LeftLeg" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0)
+script = ExtResource("1_alpy7")
+
+[node name="Leg" parent="LeftLeg" instance=ExtResource("2_ynl83")]
+
+[node name="RightLeg" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
+script = ExtResource("3_kto0m")
+
+[node name="Leg" parent="RightLeg" instance=ExtResource("2_ynl83")]
+
+[node name="Legs" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Legs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+shape = SubResource("BoxShape3D_alpy7")

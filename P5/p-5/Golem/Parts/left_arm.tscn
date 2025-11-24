@@ -1,11 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://cv1bamoiju316"]
+[gd_scene load_steps=6 format=3 uid="uid://cv1bamoiju316"]
 
-[ext_resource type="Script" uid="uid://ct6s35k0oket0" path="res://scripts/left_arm.gd" id="1_e4st3"]
-[ext_resource type="Script" uid="uid://co0i54gghe0o" path="res://scripts/left_hand_joint.gd" id="2_s8b3f"]
-[ext_resource type="PackedScene" uid="uid://bre7b0abkdejh" path="res://Parts/hand.tscn" id="3_70kow"]
+[ext_resource type="Script" uid="uid://ct6s35k0oket0" path="res://Golem/Scripts/left_arm.gd" id="1_e4st3"]
+[ext_resource type="Script" uid="uid://co0i54gghe0o" path="res://Golem/Scripts/left_hand_joint.gd" id="2_s8b3f"]
+[ext_resource type="PackedScene" uid="uid://bre7b0abkdejh" path="res://Golem/Parts/hand.tscn" id="3_70kow"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_sa33t"]
 size = Vector3(1, 2.5, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kjohj"]
+size = Vector3(1.5, 4, 1)
 
 [node name="LeftArm" type="Node3D"]
 script = ExtResource("1_e4st3")
@@ -28,3 +31,9 @@ script = ExtResource("2_s8b3f")
 
 [node name="Hand" parent="Ry(180)/T(0_98,-0_9,0)/LeftHandJoint" instance=ExtResource("3_70kow")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Arms" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Arms"]
+transform = Transform3D(-0.96592575, 0.258819, -8.742278e-08, 0.258819, 0.96592575, 0, 8.444391e-08, -2.2626677e-08, -1, -1, -1.5, 0)
+shape = SubResource("BoxShape3D_kjohj")
