@@ -8,9 +8,8 @@ var decreasing := true
 var sizingSpeed = 0.01
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
+#func _ready() -> void:
+	#pass # Replace with function body. CAREFUL!! Doing only pass will override father's _ready (inheritance properties)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

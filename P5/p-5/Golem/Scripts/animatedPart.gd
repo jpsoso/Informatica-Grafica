@@ -19,61 +19,80 @@ var angle := 0.0
 var rotation_speed_deg := 100
 var translation_speed := 100
 
+@onready var emisor = get_node("/root/EscenaPrincipal/Camera3DOrbital")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	emisor.moveHead.connect(_activateHead)
+	#print(emisor)
 
+func _activateHead():
+	headActive = !headActive
+	_resetAnimation()
+	walkActive = false
+	armActive = false
+	legActive = false
+	allActive = false
 
+func _activateWalk():
+	walkActive = !walkActive
+	_resetAnimation()
+	armActive = false
+	legActive = false
+	headActive = false
+	allActive = false
+	
+func _activateArms():
+	armActive = !armActive
+	_resetAnimation()
+	walkActive = false
+	legActive = false
+	headActive = false
+	allActive = false
+	
+func _activateLegs():
+	legActive = !legActive
+	_resetAnimation()
+	walkActive = false
+	armActive = false
+	headActive = false
+	allActive = false
+	
+func _activateAll():
+	allActive = !allActive
+	_resetAnimation()
+	walkActive = false
+	armActive = false
+	legActive = false
+	headActive = false
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	
+	
 	if Input.is_action_just_pressed(walkAnimation):
-		walkActive = !walkActive
-		_resetAnimation()
-		armActive = false
-		legActive = false
-		headActive = false
-		allActive = false
+		_activateWalk()
 	if walkActive :
 		walkingAnimation(delta)
 		headAnimation(delta)
 	
 	if Input.is_action_just_pressed(moveArm):
-		armActive = !armActive
-		_resetAnimation()
-		walkActive = false
-		legActive = false
-		headActive = false
-		allActive = false
+		_activateArms()
 	if armActive:
 		armAnimation(delta)
 	
 	if Input.is_action_just_pressed(moveLeg):
-		legActive = !legActive
-		_resetAnimation()
-		walkActive = false
-		armActive = false
-		headActive = false
-		allActive = false
+		_activateLegs()
 	if legActive:
 		legAnimation(delta)
 		
 	if Input.is_action_just_pressed(moveHead):
-		headActive = !headActive
-		_resetAnimation()
-		walkActive = false
-		armActive = false
-		legActive = false
-		allActive = false
+		_activateHead()
 	if headActive:
 		headAnimation(delta)
 	
 	if Input.is_action_just_pressed(moveAll):
-		allActive = !allActive
-		_resetAnimation()
-		walkActive = false
-		armActive = false
-		legActive = false
-		headActive = false
+		_activateAll()
 	if allActive:
 		armAnimation(delta)
 		legAnimation(delta)

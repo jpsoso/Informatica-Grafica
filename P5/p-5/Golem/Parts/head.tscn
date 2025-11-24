@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2yeu7h3hev3h"]
+[gd_scene load_steps=7 format=3 uid="uid://d2yeu7h3hev3h"]
 
-[ext_resource type="Script" uid="uid://bcm23woiq0fax" path="res://scripts/eyes.gd" id="1_lmq75"]
+[ext_resource type="Script" uid="uid://bcm23woiq0fax" path="res://Golem/Scripts/eyes.gd" id="1_lmq75"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_58xgv"]
 size = Vector3(1.5, 1.5, 1.5)
@@ -13,6 +13,9 @@ albedo_color = Color(0, 0.99215686, 0.9764706, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lmq75"]
 albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rrbyq"]
+size = Vector3(1.4960938, 1.4968262, 1.7562866)
 
 [node name="Head" type="Node3D"]
 
@@ -36,3 +39,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
 [node name="PiezaG" type="MeshInstance3D" parent="Eyes/RightEye"]
 mesh = SubResource("BoxMesh_lmq75")
 surface_material_override/0 = SubResource("StandardMaterial3D_lmq75")
+
+[node name="Head" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.001962185, -0.0017784834, 0.12710571)
+shape = SubResource("BoxShape3D_rrbyq")

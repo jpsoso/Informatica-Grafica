@@ -4,6 +4,11 @@ extends Camera3D
 @onready var ray = $RayCast3D
 
 ## ----------------------------------------------------------------------
+## Señales para activar animaciones
+signal moveHead()
+
+
+## ----------------------------------------------------------------------
 ## contantes y variables de instancia 
 
 const at   := 2.5   ## ángulo de rot. con teclas (en grados x pulsación)
@@ -80,9 +85,13 @@ func _input( event : InputEvent ):
 		if ray.is_colliding():
 			var objeto = ray.get_collider()
 			print("Seleccionado: ", objeto.name)
-			if objeto.name == "Floor":
-				crear_cubo_en(ray.get_collision_point())
-				print("Cubo creado en: ", ray.get_collision_point())
+			match objeto.name:
+				"Floor":
+					crear_cubo_en(ray.get_collision_point())
+					print("Cubo creado en: ", ray.get_collision_point())
+				"Head":
+					self.moveHead.emit()
+
 
 func crear_cubo_en(pos: Vector3) -> void:
 	var nuevo_cubo := MeshInstance3D.new()
