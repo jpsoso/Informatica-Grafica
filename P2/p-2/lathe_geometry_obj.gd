@@ -12,7 +12,7 @@ func _ready() -> void:
 
 	GlobalUtilities.LatheGeometryHard( profile, steps, vertices, triangulos )
 		
-		var normales := GlobalUtilities.computeNormals( vertices, triangulos )
+	var normales = GlobalUtilities.computeNormals( vertices, triangulos )
 	assert( vertices.size() == normales.size() )
 			
 	## inicializar el array con las tablas

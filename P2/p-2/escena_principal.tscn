@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://dqj6s0olf6oos"]
 
 [ext_resource type="Script" uid="uid://d3qxuedn7bn1d" path="res://práctica2Scripts/script_raiz.gd" id="1_hcujj"]
-[ext_resource type="Script" path="res://práctica2Scripts/camara_3d_orbital_simple.gd" id="1_jdg2m"]
-[ext_resource type="Script" path="res://práctica2Scripts/ejes3D.gd" id="3_awcrs"]
+[ext_resource type="Script" uid="uid://lw84ul8lb05w" path="res://práctica2Scripts/camara_3d_orbital_simple.gd" id="1_jdg2m"]
+[ext_resource type="Script" uid="uid://b6ru548e0y63g" path="res://práctica2Scripts/ejes3D.gd" id="3_awcrs"]
 [ext_resource type="PackedScene" uid="uid://dfstx3f1cwtwv" path="res://modelos_3D/Hero of Time/Hero of Time.glb" id="3_rftnj"]
 [ext_resource type="ArrayMesh" uid="uid://bkpaylfjs5yox" path="res://modelos_3D/Arwing/model.obj" id="4_rftnj"]
 [ext_resource type="Script" uid="uid://eslmb1l2k17r" path="res://práctica2Scripts/donut.gd" id="5_0or06"]
@@ -52,7 +52,6 @@ visible = false
 script = ExtResource("7_iupgd")
 
 [node name="LatheGeometryObj" type="MeshInstance3D" parent="ObjetosP2"]
-visible = false
 script = ExtResource("8_lhnnm")
 
 [node name="GlassLatheGeometry" type="MeshInstance3D" parent="ObjetosP2"]
@@ -64,4 +63,5 @@ visible = false
 script = ExtResource("10_5e3jd")
 
 [node name="CylinderLatheGeometry" type="MeshInstance3D" parent="ObjetosP2"]
+visible = false
 script = ExtResource("11_1xgag")

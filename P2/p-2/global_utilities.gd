@@ -1,5 +1,3 @@
-@tool
-
 extends Node
 
 func positiveX (profile2D : PackedVector2Array) -> bool:
@@ -59,15 +57,7 @@ func LatheGeometryHard(profile2D: PackedVector2Array,
 	assert(vertices.is_empty(), "The vertices vector must be empty")
 	assert(indexes.is_empty(), "The indexes vector must be empty")
 
-	var numPoints = profile2D.size() - 1
-
-	var bottom = Vector3(0, profile2D[0].y, 0)
-	vertices.append(bottom)
-	
-	var top = Vector3(0, profile2D[numPoints].y, 0)
-	vertices.append(top)
-
-	for i in range(numPoints): # For each point in the profile, discarding the last point
+	for i in range(profile2D.size() - 1): # For each point in the profile, discarting the upper one
 		for j in range(steps):				# For each step that is being done in the rotation
 			var next_j = (j + 1) % steps
 			var p0 = profile2D[i]
@@ -100,22 +90,7 @@ func LatheGeometryHard(profile2D: PackedVector2Array,
 			indexes.append(base + 5)
 			indexes.append(base + 4)
 			indexes.append(base + 3)
-
-			if (i == 0): # When we are building bottom
-				vertices.append(v0)
-				vertices.append(v3)
-				
-				indexes.append(base + 7)
-				indexes.append(base + 6)
-				indexes.append(0)
-
-			if (i == numPoints - 1): # When we are building top
-				vertices.append(v1)
-				vertices.append(v2)
-				
-				indexes.append(base + 7)
-				indexes.append(1)
-				indexes.append(base + 6)
+	
 
 func computeNormals( verts : PackedVector3Array, 
 				   tris  : PackedInt32Array ) -> PackedVector3Array :
@@ -156,35 +131,3 @@ func computeNormals( verts : PackedVector3Array,
 	
 	# Hecho
 	return normales
-
-# utilidades.gd
-
-static func calcUV(vertices: PackedVector3Array) -> PackedVector2Array:
-	var uvs := PackedVector2Array()
-	var max_u = 1.0
-	var max_v = 1.0
-	var min_y = vertices[0].y
-	var max_y = vertices[0].y
-	
-	# Finding the max and lowest points
-	for vert in vertices:
-		if vert.y < min_y:
-			min_y = vert.y
-		if vert.y > max_y:
-			max_y = vert.y
-	
-	# Computing the height defines the range, which needs to be normalize into [0,1]
-	var height = max_y - min_y
-	if height == 0:
-		height = 1
-	
-	for vert in vertices:
-		# 1. Calcular el valor del parámetro u
-		var phi = atan2(vert.z, -vert.x)
-		var u = max_u*(phi / (2.0 * PI) + 0.5) # This step is to make range from 0 to 1
-		# 2. Calcular el valor del parámetro v
-		var v = (vert.y - min_y) / height
-		
-		var uv_coords = Vector2(u, v)
-		uvs.append(uv_coords)
-	return uvs
