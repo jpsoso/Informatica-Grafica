@@ -4,7 +4,7 @@ Este repositorio contiene las prácticas de la asignatura **Informática Gráfic
 
 ## Estructura del Repositorio
 
-El repositorio está organizado en carpetas correspondientes a cada práctica. A continuación se presenta un índice con enlaces a cada proyecto y un resumen de los conceptos abordados.
+En cada carpeta de este repositorio se encuentra una práctica de la asignatura. Son las siguientes:
 
 | Práctica | Título | Conceptos Clave |
 | :--- | :--- | :--- |
